@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Race Lookup · Marathon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">RACE<strong>LOOKUP</strong></span>
+      </div>
+      <button class="btn-refresh" id="refreshBtn" aria-label="Refresh data" title="Force refresh cache">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3"/><path d="M22 4.5a10 10 0 0 1-18.8 4.2"/></svg>
+      </button>
+      <div class="header-meta" id="totalBadge">—</div>
+    </div>
+  </header>
+
+  <!-- ── Hero / Search ────────────────────────────────────── -->
+  <section class="hero">
+    <p class="hero-eyebrow">FIND YOUR NAME</p>
+    <h1 class="hero-title">Gawagaway-yan Marathon</h1>
+    <div class="search-wrap">
+      <span class="search-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search by name…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <span class="search-clear" id="clearBtn" aria-label="Clear search">✕</span>
+    </div>
+    <p class="search-hint" id="searchHint"></p>
+  </section>
+
+  <!-- ── Main Content ─────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- Loading state -->
+    <div class="state-loading" id="stateLoading">
+      <div class="pulse-ring"></div>
+      <p>Loading race data…</p>
+    </div>
+
+    <!-- Error state -->
+    <div class="state-error hidden" id="stateError">
+      <span class="state-icon">⚠</span>
+      <p id="errorMsg">Could not load data.</p>
+      <button class="btn-retry" id="retryBtn">Retry</button>
+    </div>
+
+    <!-- Empty search state -->
+    <div class="state-empty hidden" id="stateEmpty">
+      <span class="state-icon">🏃</span>
+      <p>No runners matched <strong id="emptyTerm"></strong>.</p>
+      <p class="state-sub">Try a different spelling.</p>
+    </div>
+
+    <!-- Results grid -->
+    <div class="results-grid" id="resultsGrid"></div>
+
+    <!-- Race stats -->
+    <section class="stats-section" id="statsSection">
+      <h2 class="stats-title">RACE STATS</h2>
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h3 class="stat-card-label">DISTANCE BREAKDOWN</h3>
+          <ul class="stat-list" id="distanceList"></ul>
+          <div class="bar-chart" id="distanceChart"></div>
+        </div>
+
+        <div class="stat-card">
+          <h3 class="stat-card-label">SHIRT SIZE DISTRIBUTION</h3>
+          <ul class="stat-list" id="shirtList"></ul>
+          <div class="bar-chart" id="shirtChart"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Data refreshes every 10 minutes · All filtering is client-side</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
