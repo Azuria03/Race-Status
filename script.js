@@ -4,7 +4,7 @@
    - Client-side filtering with 300ms debounce
    ============================================================ */
 
-const API_URL = "https://script.google.com/macros/s/AKfycbyQ8TTNMywsTbv99myieC6d7b0reGHBva3g5wWUWRe4Q6pwbgCKM5wl9t4LgmvERy5u/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbywRibheim1k0dzQtcdGScRBLRgGliSpwdLz4C8pBEa7vIDAHv9djpjr7iohJbPzqr_/exec";
 
 // Helper to bypass cache on refresh
 function fetchWithCache(useCache = true) {
@@ -31,9 +31,7 @@ const retryBtn      = document.getElementById("retryBtn");
 const emptyTerm     = document.getElementById("emptyTerm");
 const statsSection  = document.getElementById("statsSection");
 const distanceList  = document.getElementById("distanceList");
-const distanceChart = document.getElementById("distanceChart");
 const shirtList     = document.getElementById("shirtList");
-const shirtChart    = document.getElementById("shirtChart");
 const refreshBtn    = document.getElementById("refreshBtn");
 
 // ── FETCH ─────────────────────────────────────────────────────
@@ -200,11 +198,9 @@ function renderStats(stats) {
 
   // Distance
   renderStatList(distanceList, stats.distances);
-  renderBarChart(distanceChart, stats.distances, total);
 
   // Shirts
   renderStatList(shirtList, stats.shirts);
-  renderBarChart(shirtChart, stats.shirts, total);
 }
 
 function renderStatList(el, obj) {
@@ -214,29 +210,6 @@ function renderStatList(el, obj) {
       <span class="stat-val">${v.toLocaleString()}</span>
     </li>
   `).join("");
-}
-
-function renderBarChart(el, obj, total) {
-  const max = Math.max(...Object.values(obj), 1);
-  el.innerHTML = Object.entries(obj).map(([k, v]) => {
-    const pct = Math.round((v / max) * 100);
-    return `
-      <div class="bar-row">
-        <span class="bar-label">${escHtml(k)}</span>
-        <div class="bar-track">
-          <div class="bar-fill" data-pct="${pct}"></div>
-        </div>
-        <span class="bar-count">${v.toLocaleString()}</span>
-      </div>
-    `;
-  }).join("");
-
-  // Animate bars after paint
-  requestAnimationFrame(() => {
-    el.querySelectorAll(".bar-fill").forEach(bar => {
-      bar.style.width = bar.dataset.pct + "%";
-    });
-  });
 }
 
 // ── UI STATE MACHINE ──────────────────────────────────────────

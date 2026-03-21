@@ -434,51 +434,6 @@ body {
   color: var(--amber);
 }
 
-/* ── Bar Chart ────────────────────────────────────────────── */
-.bar-chart {
-  display: flex;
-  flex-direction: column;
-  gap: .55rem;
-}
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 42px 1fr 44px;
-  align-items: center;
-  gap: .6rem;
-}
-
-.bar-label {
-  font-family: var(--font-display);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  color: var(--muted);
-  text-align: right;
-}
-
-.bar-track {
-  height: 8px;
-  background: var(--navy-4);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.bar-fill {
-  height: 100%;
-  background: var(--amber);
-  border-radius: 4px;
-  width: 0;
-  transition: width .6s cubic-bezier(.4,0,.2,1);
-}
-
-.bar-count {
-  font-family: var(--font-display);
-  font-size: .82rem;
-  font-weight: 700;
-  color: var(--muted);
-}
-
 /* ── Footer ───────────────────────────────────────────────── */
 .site-footer {
   text-align: center;
